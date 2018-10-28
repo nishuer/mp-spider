@@ -1,40 +1,142 @@
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import os
+import importlib
 import time
 
-driver = webdriver.Firefox()
+from .base import Base
+from app.extend import helper
 
-driver.get("https://www.toutiao.com/")
 
-time.sleep(3)
+class ToutiaoArticleRobot(Base):
+    __publish_site = "https://www.toutiao.com"
+    __publish_site_url = "https://mp.toutiao.com/profile_v3/graphic/publish"
 
-c1 = {u"name":u"uid_tt",u"value": u"94a43bbf53e7ff7cef8a5a21103fa793",u"domain":u".toutiao.com"}
-c2 = {u"name":u"ccid",u"value": u"d863e681bde46657136c13f1c4c1bd65",u"domain":u".toutiao.com"}
-c3 = {u"name":u"ckmts",u"value": u"PUUrOYsQ,qrUrOYsQ,L64rOYsQ",u"domain":u".toutiao.com"}
-c4 = {u"name":u"sid_tt",u"value":u"7a4eaf65acc29cb04b6cdebcab76aaab",u"domain":u".toutiao.com"}
 
-driver.add_cookie(c1)
-driver.add_cookie(c2)
-driver.add_cookie(c3)
-driver.add_cookie(c4)
+    def __init__(self, config):
+        super(ToutiaoArticleRobot, self).__init__()
 
-driver.get("https://mp.toutiao.com/profile_v3/graphic/publish")
+        self.config = config
+        _source = importlib.import_module('app.source.%s_source' % config['source']['platform'])
+        self.source = getattr(_source, config['source']['category'])
 
-time.sleep(3)
+        self.rule = importlib.import_module('app.rule.%s_rule' % config['source']['platform'])
+        
 
-publishTextarea = driver.find_element_by_class_name("ql-container")
+    def run(self):
+        self.workFlow()
 
-publishTextarea.click()
 
-time.sleep(3)
+    def workFlow(self):
+        self.loginAccount()
+        self.navigatePublishPage()
+        self.openSource()
 
-action = ActionChains(driver)
 
-action.key_down(Keys.COMMAND).send_keys("v").key_up(Keys.COMMAND).perform()
+    def loginAccount(self):
+        self.driver.get(self.__publish_site)
 
-time.sleep(2)
+        if (self.hasCheckDriverWait("login-button")):
+            self.addCookies(self.config['account'])
+        else:
+            self.loginAccount()
 
-driver.quit()
+
+    def navigatePublishPage(self):
+        self.driver.get(self.__publish_site_url)
+
+        if (self.hasCheckDriverWait("ql-container")):
+            self.__tempHandle()
+        else:
+            self.navigatePublishPage()
+
+
+    # 处理临时的页面特殊逻辑
+    def __tempHandle(self):
+        # 处理青云计划弹窗
+        if (self.hasCheckDriverWait('pgc-dialog', 3)):
+            dialogElement = self.driver.find_element_by_class_name("pgc-dialog")
+            self.hideElement(dialogElement)
+            
+            bodyElement = self.driver.find_elements_by_xpath("/html/body")
+            self.setElementAttr(bodyElement)('class')
+
+
+    def writeTitle(self, title):
+        titleInputElement = self.driver.find_element_by_class_name("tui2-input")
+        titleInputElement.send_keys(title)
+    
+    
+    def writeContent(self):
+        publishTextareaElement = self.driver.find_element_by_class_name("ql-editor")
+        publishTextareaElement.click()
+        time.sleep(1)
+        self.actionPaste()
+
+        time.sleep(3)
+        self.scrollBottom()
+        self.clickAutoCover()
+
+
+    def publishArticle(self):
+        publishBtnElement = self.driver.find_element_by_xpath("//*[@id='publish']")
+        publishBtnElement.click()
+
+
+    def clickAutoCover(self):
+        autoCoverElement = self.driver.find_element_by_xpath("//*[@class='article-cover']/div/div/label[last()]")
+        autoCoverElement.click()
+
+
+    def openSource(self):
+        for url in self.source:
+            self.__handleSingleSource(url)
+
+
+    def reset(self):
+        self.navigatePublishPage()
+
+        self.switchWindow(1)
+        self.driver.close()
+
+        self.switchWindow(2)
+        self.driver.close()
+
+
+    def __handleSingleSource(self, url):
+        self.openNewWindow(url)
+
+        self.switchWindow(1)
+        
+        if (self.rule.hasCheckTitle(self)):
+
+            self.rule.openArticle(self)
+
+            self.switchWindow(2)
+
+            title = self.rule.getTitle(self)
+
+            helper.titleWrite(title)
+
+            self.switchWindow(0)
+
+            self.writeTitle(title)
+
+            self.switchWindow(2)
+
+            self.rule.hideOtherElement(self)
+
+            time.sleep(1)
+
+            self.actionSelect()
+            self.actionCopy()
+
+            self.switchWindow(0)
+            
+            time.sleep(1)
+            
+            self.writeContent()
+
+            self.publishArticle()
+
+            time.sleep(2)
+
+            self.reset()
