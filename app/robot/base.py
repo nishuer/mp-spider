@@ -12,9 +12,9 @@ class Base(object):
         self.driver = webdriver.Firefox()
     
 
-    def hasCheckDriverWait(self, elementName, timeout = 10):
+    def hasCheckDriverWait(self, elementName, timeout = 6, byType = 'CLASS_NAME'):
         try:
-            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CLASS_NAME, elementName)))
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((getattr(By, byType), elementName)))
             return True
         except:
             return False

@@ -28,7 +28,10 @@ class ToutiaoArticleRobot(Base):
     def workFlow(self):
         self.loginAccount()
         self.navigatePublishPage()
-        self.openSource()
+
+        while True:
+            self.openSource()
+            time.sleep(600)
 
 
     def loginAccount(self):
@@ -49,15 +52,20 @@ class ToutiaoArticleRobot(Base):
             self.navigatePublishPage()
 
 
-    # 处理临时的页面特殊逻辑
+    # 处理临时的页面特殊问题
     def __tempHandle(self):
         # 处理青云计划弹窗
-        if (self.hasCheckDriverWait('pgc-dialog', 3)):
-            dialogElement = self.driver.find_element_by_class_name("pgc-dialog")
-            self.hideElement(dialogElement)
+        # if (self.hasCheckDriverWait('pgc-dialog', 3)):
+        #     dialogElement = self.driver.find_element_by_class_name("pgc-dialog")
+        #     self.hideElement(dialogElement)
             
-            bodyElement = self.driver.find_elements_by_xpath("/html/body")
-            self.setElementAttr(bodyElement)('class')
+        #     bodyElement = self.driver.find_elements_by_xpath("/html/body")
+        #     self.setElementAttr(bodyElement)('class')
+
+        # 处理撤销
+        if (self.hasCheckDriverWait('//*[@id="syl-fixed-alert"]/div/span', 6, 'XPATH')):
+            revokeElement = self.driver.find_element_by_xpath('//*[@id="syl-fixed-alert"]/div/span')
+            revokeElement.click()
 
 
     def writeTitle(self, title):
@@ -92,13 +100,19 @@ class ToutiaoArticleRobot(Base):
 
 
     def reset(self):
-        self.navigatePublishPage()
-
         self.switchWindow(1)
         self.driver.close()
 
-        self.switchWindow(2)
-        self.driver.close()
+        try:
+            self.switchWindow(1)
+            self.driver.close()
+        except IndexError as e:
+            print(e)
+        finally:
+            self.switchWindow(0)
+            self.navigatePublishPage()
+
+            time.sleep(10)
 
 
     def __handleSingleSource(self, url):
@@ -114,29 +128,31 @@ class ToutiaoArticleRobot(Base):
 
             title = self.rule.getTitle(self)
 
-            helper.titleWrite(title)
+            if (title):
+                
+                helper.titleWrite(title)
 
-            self.switchWindow(0)
+                self.switchWindow(0)
 
-            self.writeTitle(title)
+                self.writeTitle(title)
 
-            self.switchWindow(2)
+                self.switchWindow(2)
 
-            self.rule.hideOtherElement(self)
+                self.rule.hideOtherElement(self)
 
-            time.sleep(1)
+                time.sleep(1)
 
-            self.actionSelect()
-            self.actionCopy()
+                self.actionSelect()
+                self.actionCopy()
 
-            self.switchWindow(0)
-            
-            time.sleep(1)
-            
-            self.writeContent()
+                self.switchWindow(0)
+                
+                time.sleep(1)
+                
+                self.writeContent()
 
-            self.publishArticle()
+                self.publishArticle()
 
-            time.sleep(2)
+                time.sleep(2)
 
-            self.reset()
+        self.reset()

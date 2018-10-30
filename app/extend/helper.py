@@ -11,7 +11,7 @@ def titleRead(title):
 
 
 def titleWrite(title):
-     with open('%s/app/data/title_data.txt' % os.getcwd(), 'w') as f:
+     with open('%s/app/data/title_data.txt' % os.getcwd(), 'a') as f:
         try:
             f.write('%s\n' % title)
         except Exception as e:
