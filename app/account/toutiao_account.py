@@ -15,13 +15,13 @@ account_15387579110 = {
 account_15200878087 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",
-    "category": "history",
+    "category": "animation",
     "name": "动漫",
     "account": "15200878087",
     "password": "mjg5mdSINCE1991",
     "cookies": {
         "ccid": "3caa67295422191672595c00c082f815",
-        "sid_tt": "b241d7d414d94453f0610a6edf7c2747",
-        "uid_tt": "72ebdb414b4c806a8c0b12be994f661c",
+        "sid_tt": "2ed72b7250c20745c224b572388dd830",
+        "uid_tt": "03912d3765ed54534b9d8c42f02e0a1b",
     },
 }

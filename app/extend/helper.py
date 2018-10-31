@@ -1,8 +1,8 @@
 import os
 import logging
 
-def titleRead(title):
-    with open('%s/app/data/title_data.txt' % os.getcwd(), 'r') as f:
+def titleRead(title, fileName):
+    with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'r') as f:
         try:
             f.readlines().index('%s\n' % title)
             return False
@@ -10,8 +10,8 @@ def titleRead(title):
             return True
 
 
-def titleWrite(title):
-     with open('%s/app/data/title_data.txt' % os.getcwd(), 'a') as f:
+def titleWrite(title, fileName):
+     with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'a') as f:
         try:
             f.write('%s\n' % title)
         except Exception as e:

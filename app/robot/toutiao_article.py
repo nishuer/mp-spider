@@ -63,8 +63,9 @@ class ToutiaoArticleRobot(Base):
         #     self.setElementAttr(bodyElement)('class')
 
         # 处理撤销
-        if (self.hasCheckDriverWait('//*[@id="syl-fixed-alert"]/div/span', 6, 'XPATH')):
+        if (self.hasCheckDriverWait('//*[@id="syl-fixed-alert"]/div/span', 3, 'XPATH')):
             revokeElement = self.driver.find_element_by_xpath('//*[@id="syl-fixed-alert"]/div/span')
+            time.sleep(5)
             revokeElement.click()
 
 
@@ -130,7 +131,7 @@ class ToutiaoArticleRobot(Base):
 
             if (title):
                 
-                helper.titleWrite(title)
+                helper.titleWrite(title, self.config['source']['category'])
 
                 self.switchWindow(0)
 
