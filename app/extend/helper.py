@@ -1,5 +1,6 @@
 import os
 import logging
+import time
 
 def titleRead(title, fileName):
     with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'r') as f:
@@ -16,3 +17,13 @@ def titleWrite(title, fileName):
             f.write('%s\n' % title)
         except Exception as e:
             logging.exception(e)
+
+
+# 获取当前时分秒
+def getDate():
+        return time.strftime("%H:%M:%S", time.localtime())
+
+
+# 判断目录是否存在
+def hasDir(dir):
+    return os.path.isdir(dir)

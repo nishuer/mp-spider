@@ -12,7 +12,7 @@ class ToutiaoArticleRobot(Base):
 
 
     def __init__(self, config):
-        super(ToutiaoArticleRobot, self).__init__()
+        super(ToutiaoArticleRobot, self).__init__(config)
 
         self.config = config
         _source = importlib.import_module('app.source.%s_source' % config['source']['platform'])
@@ -31,7 +31,6 @@ class ToutiaoArticleRobot(Base):
 
         while True:
             self.openSource()
-            time.sleep(600)
 
 
     def loginAccount(self):
@@ -107,8 +106,8 @@ class ToutiaoArticleRobot(Base):
         try:
             self.switchWindow(1)
             self.driver.close()
-        except IndexError as e:
-            print(e)
+        except:
+            pass
         finally:
             self.switchWindow(0)
             self.navigatePublishPage()
@@ -116,6 +115,7 @@ class ToutiaoArticleRobot(Base):
             time.sleep(10)
 
 
+    # 单一资源处理流程
     def __handleSingleSource(self, url):
         self.openNewWindow(url)
 
@@ -155,5 +155,9 @@ class ToutiaoArticleRobot(Base):
                 self.publishArticle()
 
                 time.sleep(2)
+            else:
+                print('不是图文，跳过 %s' % helper.getDate())
+        else:
+            print('已经发布，跳过 %s' % helper.getDate())
 
         self.reset()

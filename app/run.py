@@ -6,7 +6,8 @@ toutiao_history_robot = ToutiaoArticleRobot({
         "platform": "sohu",
         "category": "history"
     },
-    "account": toutiao_account.account_15387579110
+    "account": toutiao_account.account_15387579110,
+    "profile_dir": "/Users/nishu/Library/Application Support/Firefox/Profiles/2m3vd669.robot"
 })
 
 toutiao_history_robot.run()

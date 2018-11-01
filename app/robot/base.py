@@ -8,8 +8,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from app.extend import helper
 
 class Base(object):
-    def __init__(self):
-        self.driver = webdriver.Firefox()
+    def __init__(self, config):
+        fp = webdriver.FirefoxProfile("/Users/nishu/Library/Application Support/Firefox/Profiles/2m3vd669.robot")
+        self.driver = webdriver.Firefox(firefox_profile=fp)
+        # self.driver = webdriver.Firefox()
+
+        # option = webdriver.ChromeOptions()
+        # option.add_argument('--user-data-dir=/Users/nishu/Library/Application Support/Google/Chrome/Profile 2')
+        # self.driver = webdriver.Chrome()
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, byType = 'CLASS_NAME'):

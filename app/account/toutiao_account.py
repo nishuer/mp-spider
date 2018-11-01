@@ -6,9 +6,9 @@ account_15387579110 = {
     "account": "15387579110",
     "password": "010101Er",
     "cookies": {
-        "ccid": "81a4334ab97249757b8fd7ae1928f058",
-        "sid_tt": "26331ac23ec844462f88dee841d7a161",
-        "uid_tt": "fdcaafcaa23f4b68c857c2e34c096d10",
+        "ccid": "3caa67295422191672595c00c082f815",
+        "sid_tt": "c7aec0b2d374767f67dffba040b89989",
+        "uid_tt": "8e7aaaca3ea51397034b5aeb5dd4e301",
     },
 }
 
@@ -21,7 +21,7 @@ account_15200878087 = {
     "password": "mjg5mdSINCE1991",
     "cookies": {
         "ccid": "3caa67295422191672595c00c082f815",
-        "sid_tt": "2ed72b7250c20745c224b572388dd830",
-        "uid_tt": "03912d3765ed54534b9d8c42f02e0a1b",
+        "sid_tt": "5e67593ad8532c741b487ae9963e873f",
+        "uid_tt": "8d43300cb104212ea28d69913069a18e",
     },
 }
