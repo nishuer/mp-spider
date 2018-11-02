@@ -35,6 +35,7 @@ class ToutiaoArticleRobot(Base):
 
     def loginAccount(self):
         self.driver.get(self.__publish_site)
+        self.driver.maximize_window()
 
         if (self.hasCheckDriverWait("login-button")):
             self.addCookies(self.config['account'])
@@ -43,8 +44,12 @@ class ToutiaoArticleRobot(Base):
 
 
     def navigatePublishPage(self):
-        self.driver.get(self.__publish_site_url)
-
+        try:
+            self.driver.get(self.__publish_site_url)
+        except TimeoutError:
+            print('网页打开超时，重新刷新页面')
+            self.navigatePublishPage()
+        
         if (self.hasCheckDriverWait("ql-container")):
             self.__tempHandle()
         else:
@@ -63,8 +68,8 @@ class ToutiaoArticleRobot(Base):
 
         # 处理撤销
         if (self.hasCheckDriverWait('//*[@id="syl-fixed-alert"]/div/span', 3, 'XPATH')):
+            time.sleep(3)
             revokeElement = self.driver.find_element_by_xpath('//*[@id="syl-fixed-alert"]/div/span')
-            time.sleep(5)
             revokeElement.click()
 
 

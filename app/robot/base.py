@@ -9,9 +9,9 @@ from app.extend import helper
 
 class Base(object):
     def __init__(self, config):
-        fp = webdriver.FirefoxProfile("/Users/nishu/Library/Application Support/Firefox/Profiles/2m3vd669.robot")
-        self.driver = webdriver.Firefox(firefox_profile=fp)
-        # self.driver = webdriver.Firefox()
+        # fp = webdriver.FirefoxProfile("/Users/nishu/Library/Application Support/Firefox/Profiles/2m3vd669.robot")
+        # self.driver = webdriver.Firefox(firefox_profile=fp)
+        self.driver = webdriver.Firefox()
 
         # option = webdriver.ChromeOptions()
         # option.add_argument('--user-data-dir=/Users/nishu/Library/Application Support/Google/Chrome/Profile 2')
@@ -77,3 +77,4 @@ class Base(object):
    
     def scrollTop(self):
         self.driver.execute_script("window.scrollTo(0, 0)")
+        
