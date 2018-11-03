@@ -1,6 +1,7 @@
 import os
 import logging
 import time
+import platform
 
 def titleRead(title, fileName):
     with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'r') as f:
@@ -12,11 +13,15 @@ def titleRead(title, fileName):
 
 
 def titleWrite(title, fileName):
-     with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'a') as f:
+     with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'a', encoding='utf8') as f:
         try:
             f.write('%s\n' % title)
         except Exception as e:
             logging.exception(e)
+
+
+def getSystem():
+    return platform.system()
 
 
 # 获取当前时分秒
