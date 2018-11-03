@@ -9,12 +9,12 @@ from app.extend import helper
 
 class Base(object):
     def __init__(self, config):
-        # fp = webdriver.FirefoxProfile(r"C:\Users\admin\AppData\Roaming\Mozilla\Firefox\Profiles\g4nm6wj8.robot")
-        # self.driver = webdriver.Firefox(firefox_profile=fp)
-        # self.driver = webdriver.Firefox()
+        # profile = webdriver.FirefoxProfile(config["profile_dir"])
+        # profile.set_preference('browser.tabs.opentabfor.windowopen', False)
+        # self.driver = webdriver.Firefox(firefox_profile=profile)
 
         option = webdriver.ChromeOptions()
-        option.add_argument('--user-data-dir=%s' % config['profile_dir'])
+        option.add_argument('--user-data-dir=%s' % config["profile_dir"])
         self.driver = webdriver.Chrome(chrome_options=option)
     
 
@@ -39,7 +39,7 @@ class Base(object):
 
 
     def openNewWindow(self, url):
-        self.driver.execute_script('window.open("%s")' % url)
+        self.driver.execute_script('window.open("%s")' % url, '_blank')
 
 
     def switchWindow(self, index):
@@ -71,6 +71,10 @@ class Base(object):
         self.action.key_down(self.__getKeysControlOrCommand()).send_keys("a").key_up(self.__getKeysControlOrCommand()).perform()
 
 
+    def actionEnter(self, element):
+        element.send_keys(Keys.ENTER)
+
+
     def hideElement(self, element):
         self.driver.execute_script("arguments[0].setAttribute('style', 'display: none')", element)
 
@@ -88,3 +92,4 @@ class Base(object):
    
     def scrollTop(self):
         self.driver.execute_script("window.scrollTo(0, 0)")
+        

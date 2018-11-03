@@ -9,6 +9,7 @@ from app.extend import helper
 class ToutiaoArticleRobot(Base):
     __publish_site = "https://www.toutiao.com"
     __publish_site_url = "https://mp.toutiao.com/profile_v3/graphic/publish"
+    __publish_search_url = "https://www.toutiao.com/search"
 
 
     def __init__(self, config):
@@ -26,6 +27,7 @@ class ToutiaoArticleRobot(Base):
 
 
     def workFlow(self):
+        self.openSearch()
         self.loginAccount()
         self.navigatePublishPage()
 
@@ -33,22 +35,39 @@ class ToutiaoArticleRobot(Base):
             self.openSource()
 
 
-    def loginAccount(self):
+    def loginAccount(self, isInit = True):
+        if (isInit):
+            self.openNewWindow("")
+            self.switchWindow(1)
+
         self.driver.get(self.__publish_site)
 
         if (self.hasCheckDriverWait("login-button")):
             self.addCookies(self.config['account'])
         else:
-            self.loginAccount()
+            self.loginAccount(False)
 
 
     def navigatePublishPage(self):
-        self.driver.get(self.__publish_site_url)
-
+        try:
+            self.driver.get(self.__publish_site_url)
+        except TimeoutError:
+            print('发布网页打开超时，重新刷新页面')
+            self.navigatePublishPage()
+        
         if (self.hasCheckDriverWait("ql-container")):
             self.__tempHandle()
         else:
             self.navigatePublishPage()
+
+
+    def openSearch(self):
+        try:
+            self.driver.get(self.__publish_search_url)
+            self.driver.maximize_window()
+        except TimeoutError:
+            print('搜索网页打开超时，重新刷新页面')
+            self.openSearch()
 
 
     # 处理临时的页面特殊问题
@@ -63,8 +82,8 @@ class ToutiaoArticleRobot(Base):
 
         # 处理撤销
         if (self.hasCheckDriverWait('//*[@id="syl-fixed-alert"]/div/span', 3, 'XPATH')):
+            time.sleep(3)
             revokeElement = self.driver.find_element_by_xpath('//*[@id="syl-fixed-alert"]/div/span')
-            time.sleep(5)
             revokeElement.click()
 
 
@@ -94,38 +113,60 @@ class ToutiaoArticleRobot(Base):
         autoCoverElement.click()
 
 
+    def checkTitleRepeat(self, title):
+        self.switchWindow(0)
+        self.driver.get(self.__publish_search_url)
+
+        searchInput = self.driver.find_element_by_xpath("//input[@name='keyword']")
+        
+        searchInput.send_keys(title)
+        self.actionEnter(searchInput)
+
+        if (self.hasCheckDriverWait("//span[@class='J_title']", 10, 'XPATH')):
+            searchTitle = self.driver.find_element_by_xpath("//span[@class='J_title']")
+            print(title)
+            print(searchTitle.text)
+            return not (title == searchTitle.text)
+           
+        return False
+
+
     def openSource(self):
         for url in self.source:
             self.__handleSingleSource(url)
 
 
     def reset(self):
-        self.switchWindow(1)
+        self.switchWindow(2)
         self.driver.close()
 
         try:
-            self.switchWindow(1)
+            self.switchWindow(2)
             self.driver.close()
         except:
             pass
         finally:
-            self.switchWindow(0)
+            self.switchWindow(1)
             self.navigatePublishPage()
 
-            time.sleep(10)
+            time.sleep(6)
 
 
     # 单一资源处理流程
     def __handleSingleSource(self, url):
         self.openNewWindow(url)
 
-        self.switchWindow(1)
+        self.switchWindow(2)
+
+        title = self.rule.hasCheckTitle(self)
         
-        if (self.rule.hasCheckTitle(self)):
+        if (title and self.checkTitleRepeat(title)):
+
+            self.switchWindow(2)
 
             self.rule.openArticle(self)
 
-            self.switchWindow(2)
+            self.switchWindow(3)
 
             title = self.rule.getTitle(self)
 
@@ -133,11 +174,11 @@ class ToutiaoArticleRobot(Base):
                 
                 helper.titleWrite(title, self.config['source']['category'])
 
-                self.switchWindow(0)
+                self.switchWindow(1)
 
                 self.writeTitle(title)
 
-                self.switchWindow(2)
+                self.switchWindow(3)
 
                 self.rule.hideOtherElement(self)
 
@@ -146,7 +187,7 @@ class ToutiaoArticleRobot(Base):
                 self.actionSelect()
                 self.actionCopy()
 
-                self.switchWindow(0)
+                self.switchWindow(1)
                 
                 time.sleep(1)
                 

@@ -1,4 +1,4 @@
-account_15387579110 = {
+history_15387579110 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",
     "category": "history",
@@ -7,12 +7,12 @@ account_15387579110 = {
     "password": "010101Er",
     "cookies": {
         "ccid": "3caa67295422191672595c00c082f815",
-        "sid_tt": "c7aec0b2d374767f67dffba040b89989",
-        "uid_tt": "8e7aaaca3ea51397034b5aeb5dd4e301",
+        "sid_tt": "ea1f33132a90be96a937e1d2719fef22",
+        "uid_tt": "4fcbf1844bd4d18d1475f81aa7b535c4",
     },
 }
 
-account_15200878087 = {
+animation_15200878087 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",
     "category": "animation",
@@ -21,7 +21,21 @@ account_15200878087 = {
     "password": "mjg5mdSINCE1991",
     "cookies": {
         "ccid": "3caa67295422191672595c00c082f815",
-        "sid_tt": "5e67593ad8532c741b487ae9963e873f",
-        "uid_tt": "8d43300cb104212ea28d69913069a18e",
+        "sid_tt": "c7aec0b2d374767f67dffba040b89989",
+        "uid_tt": "e73a3d4e2da794f94b7104b76bd0bd46",
+    },
+}
+
+food_18707496278 = {
+	"platform": "toutiao",
+	"domain": ".toutiao.com",
+    "category": "food",
+    "name": "美食",
+    "account": "18707496278",
+    "password": "010101Er",
+    "cookies": {
+        "ccid": "81a4334ab97249757b8fd7ae1928f058",
+        "sid_tt": "26331ac23ec844462f88dee841d7a161",
+        "uid_tt": "6adab42fe03331edc62b82b926479e4d",
     },
 }
