@@ -9,13 +9,15 @@ from app.extend import helper
 
 class Base(object):
     def __init__(self, config):
-        # fp = webdriver.FirefoxProfile("/Users/nishu/Library/Application Support/Firefox/Profiles/2m3vd669.robot")
-        # self.driver = webdriver.Firefox(firefox_profile=fp)
+        # profile = webdriver.FirefoxProfile(config["profile_dir"])
+        # profile.set_preference('browser.tabs.opentabfor.windowopen', False)
+
+        # self.driver = webdriver.Firefox(firefox_profile=profile)
         self.driver = webdriver.Firefox()
 
         # option = webdriver.ChromeOptions()
         # option.add_argument('--user-data-dir=/Users/nishu/Library/Application Support/Google/Chrome/Profile 2')
-        # self.driver = webdriver.Chrome()
+        # self.driver = webdriver.Chrome(chrome_options=options)
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, byType = 'CLASS_NAME'):
@@ -39,7 +41,7 @@ class Base(object):
 
 
     def openNewWindow(self, url):
-        self.driver.execute_script('window.open("%s")' % url)
+        self.driver.execute_script('window.open("%s")' % url, '_blank')
 
 
     def switchWindow(self, index):
@@ -58,6 +60,10 @@ class Base(object):
     def actionSelect(self):
         self.action = ActionChains(self.driver)
         self.action.key_down(Keys.COMMAND).send_keys("a").key_up(Keys.COMMAND).perform()
+
+
+    def actionEnter(self, element):
+        element.send_keys(Keys.ENTER)
 
 
     def hideElement(self, element):
