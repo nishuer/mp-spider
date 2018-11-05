@@ -11,13 +11,11 @@ class Base(object):
     def __init__(self, config):
         # profile = webdriver.FirefoxProfile(config["profile_dir"])
         # profile.set_preference('browser.tabs.opentabfor.windowopen', False)
-
         # self.driver = webdriver.Firefox(firefox_profile=profile)
-        self.driver = webdriver.Firefox()
 
-        # option = webdriver.ChromeOptions()
-        # option.add_argument('--user-data-dir=/Users/nishu/Library/Application Support/Google/Chrome/Profile 2')
-        # self.driver = webdriver.Chrome(chrome_options=options)
+        option = webdriver.ChromeOptions()
+        option.add_argument('--user-data-dir=%s' % config["profile_dir"])
+        self.driver = webdriver.Chrome(chrome_options=option)
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, byType = 'CLASS_NAME'):
@@ -48,18 +46,29 @@ class Base(object):
         self.driver.switch_to_window(self.driver.window_handles[index])
 
 
+    def __getKeysControlOrCommand(self):
+        systemPlatform = helper.getSystem()
+
+        if (systemPlatform == 'Windows'):
+            return Keys.CONTROL
+        elif(systemPlatform == 'Darwin'):
+            return Keys.COMMAND
+        else:
+            print('Unsupported running environment')
+
+
     def actionCopy(self):
-        self.action.key_down(Keys.COMMAND).send_keys("c").key_up(Keys.COMMAND).perform()
+        self.action.key_down(self.__getKeysControlOrCommand()).send_keys("c").key_up(self.__getKeysControlOrCommand()).perform()
 
 
     def actionPaste(self):
         self.action = ActionChains(self.driver)
-        self.action.key_down(Keys.COMMAND).send_keys("v").key_up(Keys.COMMAND).perform()
+        self.action.key_down(self.__getKeysControlOrCommand()).send_keys("v").key_up(self.__getKeysControlOrCommand()).perform()
 
 
     def actionSelect(self):
         self.action = ActionChains(self.driver)
-        self.action.key_down(Keys.COMMAND).send_keys("a").key_up(Keys.COMMAND).perform()
+        self.action.key_down(self.__getKeysControlOrCommand()).send_keys("a").key_up(self.__getKeysControlOrCommand()).perform()
 
 
     def actionEnter(self, element):
