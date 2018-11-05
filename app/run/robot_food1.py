@@ -7,7 +7,7 @@ robot = ToutiaoArticleRobot({
         "category": "food"
     },
     "account": toutiao_account.food_18707496278,
-    "profile_dir": "/Users/nishu/Library/Application Support/Firefox/Profiles/01ky36ih.robot2"
+    "profile_dir": r"C:\Users\admin\AppData\Local\Google\Chrome\User Data\Profile 1"
 })
 
 robot.run()

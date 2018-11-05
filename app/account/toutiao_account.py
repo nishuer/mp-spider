@@ -34,8 +34,8 @@ food_18707496278 = {
     "account": "18707496278",
     "password": "010101Er",
     "cookies": {
-        "ccid": "81a4334ab97249757b8fd7ae1928f058",
-        "sid_tt": "26331ac23ec844462f88dee841d7a161",
-        "uid_tt": "6adab42fe03331edc62b82b926479e4d",
+        "ccid": "7f6cbf3d9f195dc68d23e1d9bd2823c3",
+        "sid_tt": "4442ddb91dfaa949c208bfa899519a91",
+        "uid_tt": "f44705aa571902b9c091bca08b194fb9",
     },
 }
