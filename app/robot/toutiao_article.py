@@ -42,10 +42,7 @@ class ToutiaoArticleRobot(Base):
 
         self.driver.get(self.__publish_site)
 
-        if (self.hasCheckDriverWait("login-button")):
-            self.addCookies(self.config['account'])
-        else:
-            self.loginAccount(False)
+        self.addCookies(self.config['account'])
 
 
     def navigatePublishPage(self):
