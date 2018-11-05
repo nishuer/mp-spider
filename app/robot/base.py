@@ -9,13 +9,12 @@ from app.extend import helper
 
 class Base(object):
     def __init__(self, config):
-        # profile = webdriver.FirefoxProfile(config["profile_dir"])
-        # profile.set_preference('browser.tabs.opentabfor.windowopen', False)
-        # self.driver = webdriver.Firefox(firefox_profile=profile)
+        profile = webdriver.FirefoxProfile(config["profile_dir"])
+        self.driver = webdriver.Firefox(firefox_profile=profile)
 
-        option = webdriver.ChromeOptions()
-        option.add_argument('--user-data-dir=%s' % config["profile_dir"])
-        self.driver = webdriver.Chrome(chrome_options=option)
+        # option = webdriver.ChromeOptions()
+        # option.add_argument('--user-data-dir=%s' % config["profile_dir"])
+        # self.driver = webdriver.Chrome(chrome_options=option)
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, byType = 'CLASS_NAME'):
