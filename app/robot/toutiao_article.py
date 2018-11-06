@@ -137,7 +137,6 @@ class ToutiaoArticleRobot(Base):
                 self.__handleSingleSource(url)
             finally:
                 self.lock.release()
-            
 
 
     def reset(self):
@@ -176,8 +175,6 @@ class ToutiaoArticleRobot(Base):
 
             if (title):
                 
-                helper.titleWrite(title, self.config['source']['category'])
-
                 self.switchWindow(1)
 
                 self.writeTitle(title)
@@ -198,6 +195,8 @@ class ToutiaoArticleRobot(Base):
                 self.writeContent()
 
                 self.publishArticle()
+
+                helper.titleWrite(title, self.config['source']['category'])
 
                 time.sleep(2)
             else:
