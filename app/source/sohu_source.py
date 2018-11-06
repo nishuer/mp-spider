@@ -54,17 +54,17 @@ history = (
 
 food = (
     "http://mp.sohu.com/profile?xpt=eWluaHVhNzdAMTI2LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=NTAxMzg0NTMwMkBzaW5hLnNvaHUuY29t",
-    "http://mp.sohu.com/profile?xpt=cHBhZzY3NzgwZmMxNmIwOUBzb2h1LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=cHBhZzUwNjc0YTc3ZjNlOUBzb2h1LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=bWVpc2hpLW5mZGFpbHlAc29odS5jb20=",
-    "http://mp.sohu.com/profile?xpt=OTQ5NjA5NzE2MzcwNTIyMTEyQHNvaHUuY29t",
-    "http://mp.sohu.com/profile?xpt=c29odXptdGZya2JnYmtAc29odS5jb20=",
-    "http://mp.sohu.com/profile?xpt=cHBhZzI2MzQxMzFlYzdmNUBzb2h1LmNvbQ==",
-    "http://www.sohu.com/a/272537630_134333?_f=index_chan28focus_1",
-    "http://mp.sohu.com/profile?xpt=MTAyNzc4MTgzODIxMjUxNzg4OEBzb2h1LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=bDEwNjI0MDI4N0Bzb2h1LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=eXV4aXZvMjYwM0Bzb2h1LmNvbQ==",
+    # "http://mp.sohu.com/profile?xpt=NTAxMzg0NTMwMkBzaW5hLnNvaHUuY29t",
+    # "http://mp.sohu.com/profile?xpt=cHBhZzY3NzgwZmMxNmIwOUBzb2h1LmNvbQ==",
+    # "http://mp.sohu.com/profile?xpt=cHBhZzUwNjc0YTc3ZjNlOUBzb2h1LmNvbQ==",
+    # "http://mp.sohu.com/profile?xpt=bWVpc2hpLW5mZGFpbHlAc29odS5jb20=",
+    # "http://mp.sohu.com/profile?xpt=OTQ5NjA5NzE2MzcwNTIyMTEyQHNvaHUuY29t",
+    # "http://mp.sohu.com/profile?xpt=c29odXptdGZya2JnYmtAc29odS5jb20=",
+    # "http://mp.sohu.com/profile?xpt=cHBhZzI2MzQxMzFlYzdmNUBzb2h1LmNvbQ==",
+    # "http://www.sohu.com/a/272537630_134333?_f=index_chan28focus_1",
+    # "http://mp.sohu.com/profile?xpt=MTAyNzc4MTgzODIxMjUxNzg4OEBzb2h1LmNvbQ==",
+    # "http://mp.sohu.com/profile?xpt=bDEwNjI0MDI4N0Bzb2h1LmNvbQ==",
+    # "http://mp.sohu.com/profile?xpt=eXV4aXZvMjYwM0Bzb2h1LmNvbQ==",
 )
 
 

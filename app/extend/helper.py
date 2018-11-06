@@ -13,11 +13,11 @@ def getSourcePlatform(url):
 
     for value in source_list:
         try:
-            url.index('value%s' % '.')
+            url.index(value)
             source = value
             break
-        except ValueError:
-            pass
+        except ValueError as e:
+            print(e)
 
     return source
 
@@ -25,7 +25,7 @@ def getSourcePlatform(url):
 def getSourceList(config):
     list = ()
 
-    for value in config.source:
+    for value in config['source']:
         _source = importlib.import_module('app.source.%s_source' % value)
         list = list + getattr(_source, config['account']['category'])
 

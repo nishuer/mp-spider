@@ -32,7 +32,7 @@ def hideOtherElement(self):
     e1s = driver.find_elements_by_xpath("/html/body/div[position() > 2]")
     e2s = driver.find_elements_by_xpath('//*[@id="con_wrap"]/*[position() > 1]')
     e3s = driver.find_elements_by_xpath('//*[@id="con_wrap"]/div[1]/*[position() > 1]')
-    e4s = driver.find_elements_by_xpath('//*[@id="content"]/div[2]/*[position() < 3]')
+    e4s = driver.find_elements_by_xpath('//*[@id="content"]/*[position() < 3]')
 
     e1 = driver.find_element_by_xpath('//*[@id="top_downloader"]')
     e2 = driver.find_element_by_xpath('//*[@class="downloader-bar"]')

@@ -17,7 +17,7 @@ class ToutiaoArticleRobot(Base):
         super(ToutiaoArticleRobot, self).__init__(config)
 
         self.config = config
-        self.source = helper.getSourceList(config)
+        self.sourceList = helper.getSourceList(config)
 
 
     def run(self, lock):
@@ -128,7 +128,7 @@ class ToutiaoArticleRobot(Base):
 
 
     def openSource(self):
-        for url in self.source:
+        for url in self.sourceList:
             self.lock.acquire()
 
             try:

@@ -28,10 +28,10 @@ def getTitle(self, url):
     source = helper.getSourcePlatform(url)
 
     if (source == 'sohu'):
-        return sohu_rule.openArticle(self)
+        return sohu_rule.getTitle(self)
 
     if (source == 'kuaibao'):
-        return kuaibao_rule.openArticle(self)
+        return kuaibao_rule.getTitle(self)
 
        
 def hideOtherElement(self, url):
