@@ -4,7 +4,7 @@ import time
 import platform
 
 def titleRead(title, fileName):
-    with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'r') as f:
+    with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'r', encoding='utf8') as f:
         try:
             f.readlines().index('%s\n' % title)
             return False

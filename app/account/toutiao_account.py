@@ -28,17 +28,32 @@ food_18707496278 = {
 }
 
 
-pet_18707496278 = {
+pet_13975896275 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",
-    "category": "food",
-    "name": "美食",
-    "account": "18707496278",
+    "category": "pet",
+    "name": "宠物",
+    "account": "13975896275",
+    "password": "ZBebFrZZkH23S47",
+    "cookies": {
+        "ccid": "cff1a74c0df9b5b399297fd5dd3eff6d",
+        "sid_tt": "c2fb3624ca31104f70bc1f0d68eb24f5",
+        "uid_tt": "1251460481049bbf3ec5d23b31df32ff",
+    },
+}
+
+
+joke_15111461956= {
+	"platform": "toutiao",
+	"domain": ".toutiao.com",
+    "category": "joke",
+    "name": "搞笑",
+    "account": "15111461956",
     "password": "010101Er",
     "cookies": {
-        "ccid": "30d4ab0303ac449661db76a06ae0c905",
-        "sid_tt": "ac8ff43ee857f8042c67be9596e72c31",
-        "uid_tt": "35c45577e8cfc5623054f99b99951d1c",
+        "ccid": "cff1a74c0df9b5b399297fd5dd3eff6d",
+        "sid_tt": "c2fb3624ca31104f70bc1f0d68eb24f5",
+        "uid_tt": "1251460481049bbf3ec5d23b31df32ff",
     },
 }
 
