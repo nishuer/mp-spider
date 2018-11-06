@@ -4,6 +4,7 @@ import time
 
 from .base import Base
 from app.extend import helper
+from app.rule import ruler
 
 
 class ToutiaoArticleRobot(Base):
@@ -16,11 +17,8 @@ class ToutiaoArticleRobot(Base):
         super(ToutiaoArticleRobot, self).__init__(config)
 
         self.config = config
-        _source = importlib.import_module('app.source.%s_source' % config['source']['platform'])
-        self.source = getattr(_source, config['source']['category'])
+        self.source = helper.getSourceList(config)
 
-        self.rule = importlib.import_module('app.rule.%s_rule' % config['source']['platform'])
-        
 
     def run(self, lock):
         self.lock = lock
@@ -132,7 +130,7 @@ class ToutiaoArticleRobot(Base):
     def openSource(self):
         for url in self.source:
             self.lock.acquire()
-            
+
             try:
                 self.__handleSingleSource(url)
             finally:
@@ -161,17 +159,17 @@ class ToutiaoArticleRobot(Base):
 
         self.switchWindow(2)
 
-        title = self.rule.hasCheckTitle(self)
+        title = ruler.hasCheckTitle(self, url)
         
         if (title and self.checkTitleRepeat(title)):
 
             self.switchWindow(2)
 
-            self.rule.openArticle(self)
+            ruler.openArticle(self, url)
 
             self.switchWindow(3)
 
-            title = self.rule.getTitle(self)
+            title = ruler.getTitle(self, url)
 
             if (title):
                 
@@ -181,7 +179,7 @@ class ToutiaoArticleRobot(Base):
 
                 self.switchWindow(3)
 
-                self.rule.hideOtherElement(self)
+                ruler.hideOtherElement(self, url)
 
                 time.sleep(1)
 
@@ -196,7 +194,7 @@ class ToutiaoArticleRobot(Base):
 
                 self.publishArticle()
 
-                helper.titleWrite(title, self.config['source']['category'])
+                helper.titleWrite(title, self.config['account']['category'])
 
                 time.sleep(2)
             else:

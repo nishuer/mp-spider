@@ -2,6 +2,35 @@ import os
 import logging
 import time
 import platform
+import importlib
+import re
+
+from app.config.default import source_list
+
+
+def getSourcePlatform(url):
+    source = ''
+
+    for value in source_list:
+        try:
+            url.index('value%s' % '.')
+            source = value
+            break
+        except ValueError:
+            pass
+
+    return source
+
+
+def getSourceList(config):
+    list = ()
+
+    for value in config.source:
+        _source = importlib.import_module('app.source.%s_source' % value)
+        list = list + getattr(_source, config['account']['category'])
+
+    return list
+
 
 def titleRead(title, fileName):
     with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'r', encoding='utf8') as f:
