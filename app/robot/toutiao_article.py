@@ -22,7 +22,8 @@ class ToutiaoArticleRobot(Base):
         self.rule = importlib.import_module('app.rule.%s_rule' % config['source']['platform'])
         
 
-    def run(self):
+    def run(self, lock):
+        self.lock = lock
         self.workFlow()
 
 
@@ -130,7 +131,13 @@ class ToutiaoArticleRobot(Base):
 
     def openSource(self):
         for url in self.source:
-            self.__handleSingleSource(url)
+            self.lock.acquire()
+            
+            try:
+                self.__handleSingleSource(url)
+            finally:
+                self.lock.release()
+            
 
 
     def reset(self):

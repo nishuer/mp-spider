@@ -9,5 +9,3 @@ robot = ToutiaoArticleRobot({
     "account": toutiao_account.food_18707496278,
     "profile_dir": r"C:\Users\admin\AppData\Roaming\Mozilla\Firefox\Profiles\b3282adm.robot2",
 })
-
-robot.run()
