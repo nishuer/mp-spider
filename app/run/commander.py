@@ -8,6 +8,7 @@ from .robot_history import config as config_history
 from .robot_joke import config as config_joke
 from .robot_pet import config as config_pet
 
+
 def robotFactory(lock, config):
     robot = ToutiaoArticleRobot(config)
     robot.run(lock)

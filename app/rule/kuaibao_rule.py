@@ -7,7 +7,7 @@ def hasCheckTitle(self):
     if (self.hasCheckDriverWait(TITLE_XPATH, byType="XPATH")):
         title = self.driver.find_element_by_xpath(TITLE_XPATH)
 
-        return (title.text if helper.titleRead(title.text, self.config['source']['category']) else False)
+        return (title.text if helper.titleRead(title.text, self.config['account']['category']) else False)
 
 
 def openArticle(self):
