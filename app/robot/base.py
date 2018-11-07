@@ -38,7 +38,9 @@ class Base(object):
 
 
     def openNewWindow(self, url):
-        self.driver.execute_script('window.open("%s")' % url, '_blank')
+        self.driver.execute_script('window.open("")')
+        self.switchWindow(len(self.driver.window_handles) - 1)
+        self.driver.get(url)
 
 
     def switchWindow(self, index):

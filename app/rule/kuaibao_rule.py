@@ -4,10 +4,8 @@ from app.extend import helper
 def hasCheckTitle(self):
     TITLE_XPATH = '//*[@id="root"]/div/div/div[3]/div[2]/a[1]/div/div/div[1]'
 
-    if (self.hasCheckDriverWait(TITLE_XPATH, byType="XPATH")):
-        title = self.driver.find_element_by_xpath(TITLE_XPATH)
-
-        return (title.text if helper.titleRead(title.text, self.config['account']['category']) else False)
+    title = self.driver.find_element_by_xpath(TITLE_XPATH)
+    return (title.text if helper.titleRead(title.text, self.config['account']['category']) else False)
 
 
 def openArticle(self):
@@ -20,10 +18,8 @@ def openArticle(self):
 def getTitle(self):
     TITLE_XPATH = '//*[@id="content"]/p'
 
-    if (self.hasCheckDriverWait(TITLE_XPATH, byType="XPATH")):
-        title = self.driver.find_element_by_xpath(TITLE_XPATH)
-
-        return title.text
+    title = self.driver.find_element_by_xpath(TITLE_XPATH)
+    return title.text
 
        
 def hideOtherElement(self):
