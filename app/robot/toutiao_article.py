@@ -46,10 +46,7 @@ class ToutiaoArticleRobot(Base):
             print('发布网页打开超时，重新刷新页面')
             self.navigatePublishPage()
         
-        if (self.hasCheckDriverWait("ql-container")):
-            self.__tempHandle()
-        else:
-            self.navigatePublishPage()
+        self.__tempHandle()
 
 
     def openSearch(self):
