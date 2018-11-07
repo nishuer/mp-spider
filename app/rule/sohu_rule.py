@@ -2,8 +2,11 @@ from app.extend import helper
 
 
 def hasCheckTitle(self):
-    title = self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/div[3]/div/div[1]/a')
-    return (title.text if helper.titleRead(title.text, self.config['account']['category']) else False)
+    TITLE_CLASS_NAME = "wrap_title"
+
+    if (self.hasCheckDriverWait(TITLE_CLASS_NAME)):
+        title = self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/div[3]/div/div[1]/a')
+        return (title.text if helper.titleRead(title.text, self.config['account']['category']) else False)
 
 
 def openArticle(self):
@@ -12,8 +15,11 @@ def openArticle(self):
 
 
 def getTitle(self):
-    title = self.driver.find_element_by_xpath('//*[@id="article-container"]/div[2]/div[1]/div[1]/h1')
-    return title.text
+    TITLE_CLASS_NAME = 'text-title'
+
+    if (self.hasCheckDriverWait(TITLE_CLASS_NAME)):
+        title = self.driver.find_element_by_xpath('//*[@id="article-container"]/div[2]/div[1]/div[1]/h1')
+        return title.text
 
        
 def hideOtherElement(self):

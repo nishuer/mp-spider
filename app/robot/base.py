@@ -17,9 +17,17 @@ class Base(object):
         # self.driver = webdriver.Chrome(chrome_options=option)
     
 
-    def hasCheckDriverWait(self, elementName, timeout = 6, byType = 'CLASS_NAME'):
+    def hasCheckDriverWait(self, elementName, timeout = 6, type = 'CLASS_NAME'):
         try:
-            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((getattr(By, byType), elementName)))
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((getattr(By, type), elementName)))
+            return True
+        except:
+            return False
+    
+    
+    def hasCheckElementVisibility(self, elementName, timeout = 6, type = 'CLASS_NAME'):
+        try:
+            WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located((getattr(By, type), elementName)))
             return True
         except:
             return False
