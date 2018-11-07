@@ -51,9 +51,9 @@ joke_15111461956= {
     "account": "15111461956",
     "password": "010101Er",
     "cookies": {
-        "ccid": "cff1a74c0df9b5b399297fd5dd3eff6d",
-        "sid_tt": "c2fb3624ca31104f70bc1f0d68eb24f5",
-        "uid_tt": "1251460481049bbf3ec5d23b31df32ff",
+        "ccid": "bbec610539847c60445f1f84f52d2810",
+        "sid_tt": "ae299691e41307154b39e93712e939a8",
+        "uid_tt": "4856234cdddd2f739667e4086909b514",
     },
 }
 
