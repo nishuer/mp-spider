@@ -34,13 +34,8 @@ class ToutiaoArticleRobot(Base):
             self.openSource()
 
 
-    def loginAccount(self, isInit = True):
-        if (isInit):
-            self.openNewWindow("")
-            self.switchWindow(1)
-
-        self.driver.get(self.__publish_site)
-
+    def loginAccount(self):
+        self.openNewWindow(self.__publish_site)
         self.addCookies(self.config['account'])
 
 
@@ -157,8 +152,6 @@ class ToutiaoArticleRobot(Base):
     def __handleSingleSource(self, url):
         self.openNewWindow(url)
 
-        self.switchWindow(2)
-
         title = ruler.hasCheckTitle(self, url)
         
         if (title and self.checkTitleRepeat(title)):
@@ -166,8 +159,6 @@ class ToutiaoArticleRobot(Base):
             self.switchWindow(2)
 
             ruler.openArticle(self, url)
-
-            self.switchWindow(3)
 
             title = ruler.getTitle(self, url)
 
