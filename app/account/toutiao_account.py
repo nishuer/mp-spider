@@ -58,6 +58,21 @@ joke_15111461956= {
 }
 
 
+star_15243611294 = {
+	"platform": "toutiao",
+	"domain": ".toutiao.com",
+    "category": "star",
+    "name": "娱乐",
+    "account": "15243611294",
+    "password": "010101Er",
+    "cookies": {
+        "ccid": "9feef5630aeed636b43028d958a44cef",
+        "sid_tt": "8e5bc9bac57ec9318e9aff707faa887f",
+        "uid_tt": "cdc7594794981c843ad9f6ac465f040f",
+    },
+}
+
+
 animation_15200878087 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",

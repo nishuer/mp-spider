@@ -144,3 +144,48 @@ history = (
     "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5026435",
     "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5777645",
 )
+
+
+joke = (
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5228481",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5049022",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5255176",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5055370",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5051854",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5133816",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5696776",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=6234755",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5256304",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5625282",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=9086838",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5369165",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5362235",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5185323",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5095183",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5277282",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5254099",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5069574",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5352001",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5052724",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=6186504",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5007073",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5191910",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5780347",
+)
+
+
+star = (
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5716121",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5316806",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5204221",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5594444",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5417411",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5630608",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5520031",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5676640",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5386067",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5737125",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=6071863",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5058139",
+    "http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5532883",
+)

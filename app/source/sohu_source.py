@@ -2,7 +2,6 @@ history = (
     "http://mp.sohu.com/profile?xpt=OTg4MzM4NTkzMDkxMTM3NTM2QHNvaHUuY29t",
     "http://mp.sohu.com/profile?xpt=bTE1MDI3NjA1NjI2QHNvaHUuY29t",
     "http://mp.sohu.com/profile?xpt=cHBhZzA2MDFiM2E5YWVmOUBzb2h1LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=MTAwNTc5MDg0NDk3NDA0NzIzMkBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=MTAxOTUxMzI0MTIwMzg0MzA3MkBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=c29odW1wcmZwMWRwQHNvaHUuY29t",
     "http://mp.sohu.com/profile?xpt=cHBhZzI5OTU5NzUzZjE4NkBzb2h1LmNvbQ==",
@@ -136,6 +135,36 @@ joke = (
     "http://mp.sohu.com/profile?xpt=cHBhZzY1ODE0OTRlNzA5YUBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=OTgyMjAwMjE0MDg3NzIwOTYwQHNvaHUuY29t",
     "http://mp.sohu.com/profile?xpt=Mjg3MzJDNDQzMzMzMTNFMTc0OUU1Q0JBNEQxNjZDMERAcXEuc29odS5jb20=",
+)
+
+
+star = (
+    "http://mp.sohu.com/profile?xpt=cHBhZzk5MzI4MmUzMjFmM0Bzb2h1LmNvbQ==&spm=smpc.ch19.fd.2.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzA4NDIwMjY0YzFlOUBzb2h1LmNvbQ==&spm=smpc.ch19.fd.7.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzg4NjUzODFmMjcyNEBzb2h1LmNvbQ==&spm=smpc.ch19.fd.18.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzQ3OTYyNzRlZTM4M0Bzb2h1LmNvbQ==&spm=smpc.ch19.fd.34.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=QTkwMjNDNzlFQzJEOEY1RDc1OUQzQkRGMjFGOEQwMjZAcXEuc29odS5jb20=&spm=smpc.ch19.fd.36.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzUzODBlMDBiNmU4YUBzb2h1LmNvbQ==&spm=smpc.ch19.fd.38.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=MTc1MTk4OTM2MEBzaW5hLnNvaHUuY29t&spm=smpc.ch19.fd.51.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzA1OTUyOGJiNmJlMEBzb2h1LmNvbQ==&spm=smpc.ch19.fd.61.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=MTAwNjUzODcwMjQ3NTg1NzkyMEBzb2h1LmNvbQ==&spm=smpc.ch19.fd.91.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=NEVCODgwQjhFMDlGRjVENkM1OTBBNTY4NDU4OTNEODVAcXEuc29odS5jb20=&spm=smpc.ch19.fd.108.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=dHJpcHZpdmlkQHNvaHUuY29t&spm=smpc.ch19.fd.116.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=eGluZ3podTIwMTc0QDE2My5jb20=&spm=smpc.ch19.fd.119.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzEyODJlYzBjNGRkYkBzb2h1LmNvbQ==&spm=smpc.ch19.fd.121.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzM0NDA5ZjA2NmI2M0Bzb2h1LmNvbQ==&spm=smpc.ch19.fd.122.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=c29odXptdHNqM2Q5enBAc29odS5jb20=&spm=smpc.ch19.fd.126.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzcwNzUwM2I1NGFmZkBzb2h1LmNvbQ==&spm=smpc.ch19.fd.127.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=MTI0MDA0OTQxMEBzaW5hLnNvaHUuY29t&spm=smpc.ch19.fd.132.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=anV0b3VzaGUxMjVAc29odS5jb20=&spm=smpc.ch19.fd.172.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzM1MjVjYWQ3NDFkNEBzb2h1LmNvbQ==&spm=smpc.ch19.fd.174.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=MTAzNDAwNTE0NTE2OTc5NzEyMEBzb2h1LmNvbQ==&spm=smpc.ch19.fd.178.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=MTAyOTk5NTExOTY0NDA4MjE3NkBzb2h1LmNvbQ==&spm=smpc.ch19.fd.198.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzQ5NjhmY2RiN2U5OUBzb2h1LmNvbQ==&spm=smpc.ch19.fd.202.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=MTAzMzYyMDkzNDQ3MDUxMjY0MEBzb2h1LmNvbQ==&spm=smpc.ch19.fd.209.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=cHBhZzg0MTg4YzRhMTNhY0Bzb2h1LmNvbQ==&spm=smpc.ch19.fd.211.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=NTM3MDM4NjhAcXEuY29t&spm=smpc.ch19.fd.218.1541660177761kFNzNl2",
+    "http://mp.sohu.com/profile?xpt=c29odW1weTA4NmU1QHNvaHUuY29t&spm=smpc.ch19.fd.226.1541660177761kFNzNl2",
 )
 
 

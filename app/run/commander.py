@@ -7,6 +7,7 @@ from .robot_food import config as config_food
 from .robot_history import config as config_history
 from .robot_joke import config as config_joke
 from .robot_pet import config as config_pet
+from .robot_star import config as config_star
 
 
 def robotFactory(lock, config):
@@ -22,14 +23,17 @@ if __name__ == '__main__':
     p2 = multiprocessing.Process(target=robotFactory, args=(lock, config_history))
     p3 = multiprocessing.Process(target=robotFactory, args=(lock, config_joke))
     p4 = multiprocessing.Process(target=robotFactory, args=(lock, config_pet))
+    p5 = multiprocessing.Process(target=robotFactory, args=(lock, config_star))
 
     p1.start()
     p2.start()
     p3.start()
     p4.start()
+    p5.start()
 
     p1.join()
     p2.join()
     p3.join()
     p4.join()
+    p5.join()
     

@@ -38,6 +38,8 @@ def hideOtherElement(self):
         e2 = driver.find_element_by_xpath('//*[@class="downloader-bar"]')
     except Exception as e:
         print(e)
+    else:
+        driver.execute_script("arguments[0].setAttribute('style', 'display: none')", e2)
  
     for _ in e1s:
         driver.execute_script("arguments[0].setAttribute('style', 'display: none')", _)
@@ -49,6 +51,3 @@ def hideOtherElement(self):
         driver.execute_script("arguments[0].setAttribute('style', 'display: none')", _)
 
     driver.execute_script("arguments[0].setAttribute('style', 'display: none')", e1)
-
-    if (e2):
-        driver.execute_script("arguments[0].setAttribute('style', 'display: none')", e2)
