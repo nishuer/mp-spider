@@ -42,7 +42,7 @@ class ToutiaoArticleRobot(Base):
     def navigatePublishPage(self):
         try:
             self.driver.get(self.__publish_site_url)
-        except TimeoutError:
+        except:
             print('发布网页打开超时，重新刷新页面')
             self.navigatePublishPage()
         
@@ -56,7 +56,7 @@ class ToutiaoArticleRobot(Base):
         try:
             self.driver.get(self.__publish_search_url)
             self.driver.maximize_window()
-        except TimeoutError:
+        except:
             print('搜索网页打开超时，重新刷新页面')
             self.openSearch()
 
