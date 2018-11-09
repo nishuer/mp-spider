@@ -16,7 +16,7 @@ class Base(object):
         # option.add_argument('--user-data-dir=%s' % config["profile_dir"])
         # self.driver = webdriver.Chrome(chrome_options=option)
 
-        self.driver.set_page_load_timeout(30)
+        self.driver.set_page_load_timeout(60)
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, type = 'CLASS_NAME'):
@@ -50,7 +50,11 @@ class Base(object):
     def openNewWindow(self, url):
         self.driver.execute_script('window.open("")')
         self.switchWindow(len(self.driver.window_handles) - 1)
-        self.driver.get(url)
+
+        try:
+            self.driver.get(url)
+        except TimeoutError:
+            self.driver.refresh()
 
 
     def switchWindow(self, index):

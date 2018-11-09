@@ -42,7 +42,7 @@ class ToutiaoArticleRobot(Base):
     def navigatePublishPage(self):
         try:
             self.driver.get(self.__publish_site_url)
-        except:
+        except TimeoutError:
             print('发布网页打开超时，重新刷新页面')
             self.navigatePublishPage()
         
@@ -56,7 +56,7 @@ class ToutiaoArticleRobot(Base):
         try:
             self.driver.get(self.__publish_search_url)
             self.driver.maximize_window()
-        except:
+        except TimeoutError:
             print('搜索网页打开超时，重新刷新页面')
             self.openSearch()
 
@@ -108,7 +108,11 @@ class ToutiaoArticleRobot(Base):
         self.switchWindow(0)
         self.driver.get(self.__publish_search_url)
 
-        searchInput = self.driver.find_element_by_xpath("//input[@name='keyword']")
+        try:
+            searchInput = self.driver.find_element_by_xpath("//input[@name='keyword']")
+        except:
+            time.sleep(1)
+            return self.checkTitleRepeat(title)
         
         searchInput.send_keys(title)
         self.actionEnter(searchInput)
@@ -145,7 +149,7 @@ class ToutiaoArticleRobot(Base):
             self.switchWindow(1)
             self.navigatePublishPage()
 
-            time.sleep(6)
+            time.sleep(3)
 
 
     # 单一资源处理流程
