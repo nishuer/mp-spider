@@ -20,7 +20,6 @@ history = (
     "http://mp.sohu.com/profile?xpt=cHBhZzg1MjYwMjRkZTJhNUBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=cHBhZzI2MjMzYWI3MzUwOUBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=MjczODk0MTIwMDhBRDQxMEE4OTRBMzk0Q0Y4QUE0RkFAcXEuc29odS5jb20=",
-    "http://mp.sohu.com/profile?xpt=cHBhZzU3MTIwZjc2OWEwOEBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=aG9jcWJ0d2dnbUBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=MTAzNzcwNjY4OTExOTMxODAxNkBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=NTkyNDM4NjYwQHFxLmNvbQ==",

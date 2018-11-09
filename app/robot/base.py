@@ -15,6 +15,8 @@ class Base(object):
         # option = webdriver.ChromeOptions()
         # option.add_argument('--user-data-dir=%s' % config["profile_dir"])
         # self.driver = webdriver.Chrome(chrome_options=option)
+
+        self.driver.set_page_load_timeout(30)
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, type = 'CLASS_NAME'):
