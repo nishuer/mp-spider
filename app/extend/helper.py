@@ -5,13 +5,13 @@ import platform
 import importlib
 import re
 
-from app.config.default import source_list
+from app.config.default import SOURCE_LIST
 
 
 def getSourcePlatform(url):
     source = ''
 
-    for value in source_list:
+    for value in SOURCE_LIST:
         try:
             url.index(value)
             source = value
@@ -45,6 +45,16 @@ def titleWrite(title, fileName):
      with open('%s/app/data/title_%s_data.txt' % (os.getcwd(), fileName), 'a', encoding='utf8') as f:
         try:
             f.write('%s\n' % title)
+        except Exception as e:
+            logging.exception(e)
+
+
+def titleSimilarityLog(title, target_title, num):
+     with open('%s/app/log/%s.txt' % (os.getcwd(), 'title_similarity'), 'a', encoding='utf8') as f:
+        try:
+            f.write('%s\n' % title)
+            f.write('%s\n' % target_title)
+            f.write('%s\n' % num)
         except Exception as e:
             logging.exception(e)
 

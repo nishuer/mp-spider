@@ -1,4 +1,8 @@
-source_list = (
+SOURCE_LIST = (
     'sohu',
     'kuaibao'
 )
+
+TITLE_SIMILARITY_SWITCH = False
+
+TITLE_SIMILARITY_THRESHOLD = 0.5

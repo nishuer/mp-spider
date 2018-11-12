@@ -3,7 +3,7 @@ import importlib
 import time
 
 from .base import Base
-from app.extend import helper
+from app.extend import helper, similarity
 from app.rule import ruler
 
 
@@ -104,7 +104,7 @@ class ToutiaoArticleRobot(Base):
         autoCoverElement.click()
 
 
-    def checkTitleRepeat(self, title):
+    def getTargetTitle(self, title):
         self.switchWindow(0)
         self.driver.get(self.__publish_search_url)
 
@@ -112,18 +112,22 @@ class ToutiaoArticleRobot(Base):
             searchInput = self.driver.find_element_by_xpath("//input[@name='keyword']")
         except:
             time.sleep(1)
-            return self.checkTitleRepeat(title)
+            return self.getTargetTitle(title)
         
         searchInput.send_keys(title)
         self.actionEnter(searchInput)
 
         if (self.hasCheckDriverWait("//span[@class='J_title']", 10, 'XPATH')):
             searchTitle = self.driver.find_element_by_xpath("//span[@class='J_title']")
-            print(title)
-            print(searchTitle.text)
-            return not (title == searchTitle.text)
+            return searchTitle.text
            
-        return False
+        return ""
+
+
+    def filterTitle(self, title):
+        target_title = self.getTargetTitle(title)
+
+        return title and (not (title == target_title)) and similarity.titleCompare(title, target_title)
 
 
     def openSource(self):
@@ -158,7 +162,7 @@ class ToutiaoArticleRobot(Base):
 
         title = ruler.hasCheckTitle(self, url)
         
-        if (title and self.checkTitleRepeat(title)):
+        if (self.filterTitle(title)):
 
             self.switchWindow(2)
 
