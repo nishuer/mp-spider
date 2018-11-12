@@ -127,7 +127,7 @@ class ToutiaoArticleRobot(Base):
     def filterTitle(self, title):
         target_title = self.getTargetTitle(title)
 
-        return title and (not (title == target_title)) and similarity.titleCompare(title, target_title)
+        return (not (title == target_title)) and similarity.titleCompare(title, target_title)
 
 
     def openSource(self):
@@ -162,7 +162,7 @@ class ToutiaoArticleRobot(Base):
 
         title = ruler.hasCheckTitle(self, url)
         
-        if (self.filterTitle(title)):
+        if (title and self.filterTitle(title)):
 
             self.switchWindow(2)
 
