@@ -98,6 +98,16 @@ class ToutiaoArticleRobot(Base):
         publishBtnElement = self.driver.find_element_by_xpath("//*[@id='publish']")
         publishBtnElement.click()
 
+        if (self.hasCheckDriverWait('//*[@id="graphic"]/div/div/div[2]/div[4]/span/div[@class="pgc-dialog valid-browser-dialog"]', 3, 'XPATH')):
+            vaildBtn = self.driver.find_element_by_xpath('//*[@id="graphic"]/div/div/div[2]/div[4]/span/div/div[2]/div[3]/button[1]')
+            vaildBtn.click()
+
+            self.switchWindow(2)
+            self.driver.close()
+
+            self.switchWindow(1)
+            publishBtnElement.click()
+
 
     def clickAutoCover(self):
         autoCoverElement = self.driver.find_element_by_xpath("//*[@class='article-cover']/div/div/label[last()]")
