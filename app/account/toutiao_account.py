@@ -2,7 +2,7 @@ history_15387579110 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",
     "category": "history",
-    "name": "全球历史趣闻档案馆",
+    "name": "历史",
     "account": "15387579110",
     "password": "010101Er",
     "cookies": {
@@ -73,11 +73,11 @@ star_15243611294 = {
 }
 
 
-animation_15200878087 = {
+emotion_15200878087 = {
 	"platform": "toutiao",
 	"domain": ".toutiao.com",
-    "category": "animation",
-    "name": "动漫",
+    "category": "emotion",
+    "name": "情感",
     "account": "15200878087",
     "password": "mjg5mdSINCE1991",
     "cookies": {

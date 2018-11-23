@@ -5,7 +5,7 @@ import platform
 import importlib
 import re
 
-from app.config.default import SOURCE_LIST
+from app.config.default import SOURCE_LIST, API_SOURCE_LIST
 
 
 def getSourcePlatform(url):
@@ -26,9 +26,27 @@ def getSourceList(config):
     list = ()
 
     for value in config['source']:
-        _source = importlib.import_module('app.source.%s_source' % value)
-        list = list + getattr(_source, config['account']['category'])
+        try:
+            API_SOURCE_LIST.index(value)
+            continue
+        except ValueError:
+            _source = importlib.import_module('app.source.%s_source' % value)
+            list = list + getattr(_source, config['account']['category'])
+        
+    return list
 
+
+def getApiSourceList(config):
+    list = ()
+
+    for value in config['source']:
+        try:
+            API_SOURCE_LIST.index(value)
+            _source = importlib.import_module('app.api.%s_api' % value)
+            list = list + getattr(_source, config['account']['category'])()
+        except ValueError:
+            continue
+            
     return list
 
 

@@ -1,6 +1,15 @@
+SOHU_PLATFORM = 'sohu'
+KUAIBAO_PLATFORM = 'kuaibao'
+UC_PLATFORM = 'uczzd'
+
 SOURCE_LIST = (
-    'sohu',
-    'kuaibao'
+    SOHU_PLATFORM,
+    KUAIBAO_PLATFORM,
+    UC_PLATFORM,
+)
+
+API_SOURCE_LIST = (
+    UC_PLATFORM,
 )
 
 TITLE_SIMILARITY_SWITCH = True

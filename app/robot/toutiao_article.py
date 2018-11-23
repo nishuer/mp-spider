@@ -5,6 +5,7 @@ import time
 from .base import Base
 from app.extend import helper, similarity
 from app.rule import ruler
+from app.config.default import API_SOURCE_LIST
 
 
 class ToutiaoArticleRobot(Base):
@@ -18,6 +19,7 @@ class ToutiaoArticleRobot(Base):
 
         self.config = config
         self.sourceList = helper.getSourceList(config)
+        self.apiSourceList = ()
 
 
     def run(self, lock):
@@ -32,6 +34,7 @@ class ToutiaoArticleRobot(Base):
 
         while True:
             self.openSource()
+            self.openApiSource()
 
 
     def loginAccount(self):
@@ -145,9 +148,29 @@ class ToutiaoArticleRobot(Base):
             self.lock.acquire()
 
             try:
-                self.__handleSingleSource(url)
+                self.__handleSingleSource_list_article(url)
             finally:
                 self.lock.release()
+    
+    
+    def openApiSource(self):
+        self.apiSourceList = helper.getApiSourceList(self.config)
+
+        for url in self.apiSourceList:
+            self.lock.acquire()
+
+            try:
+                self.__handleSingleSource_article(url)
+            finally:
+                self.lock.release()
+
+
+    def routeHandle(self, url):
+        try:
+            API_SOURCE_LIST.index(helper.getSourcePlatform(url))
+            self.__handleSingleSource_article(url)
+        except ValueError:
+            self.__handleSingleSource_list_article(url)
 
 
     def reset(self):
@@ -166,8 +189,8 @@ class ToutiaoArticleRobot(Base):
             time.sleep(3)
 
 
-    # 单一资源处理流程
-    def __handleSingleSource(self, url):
+    # 单一资源处理流程，列表+详情模式
+    def __handleSingleSource_list_article(self, url):
         self.openNewWindow(url)
 
         title = ruler.hasCheckTitle(self, url)
@@ -208,6 +231,44 @@ class ToutiaoArticleRobot(Base):
                 time.sleep(2)
             else:
                 print('不是图文，跳过 %s' % helper.getDate())
+        else:
+            print('已经发布，跳过 %s' % helper.getDate())
+
+        self.reset()
+
+    
+    # 单一资源处理流程，仅详情模式
+    def __handleSingleSource_article(self, url):
+        self.openNewWindow(url)
+
+        title = ruler.hasCheckTitle(self, url)
+        
+        if (title and self.filterTitle(title)):
+
+            self.switchWindow(1)
+
+            self.writeTitle(title)
+
+            self.switchWindow(2)
+
+            ruler.hideOtherElement(self, url)
+
+            time.sleep(1)
+
+            self.actionSelect()
+            self.actionCopy()
+
+            self.switchWindow(1)
+            
+            time.sleep(1)
+            
+            self.writeContent()
+
+            self.publishArticle()
+
+            helper.titleWrite(title, self.config['account']['category'])
+
+            time.sleep(2)
         else:
             print('已经发布，跳过 %s' % helper.getDate())
 
