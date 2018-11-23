@@ -33,8 +33,8 @@ class ToutiaoArticleRobot(Base):
         self.navigatePublishPage()
 
         while True:
-            self.openSource()
             self.openApiSource()
+            self.openSource()
 
 
     def loginAccount(self):
