@@ -15,3 +15,18 @@ def joke():
         return tuple(list)
 
     return ()
+
+
+def star():
+    res = request.get(uczzd_source.star)
+
+    if (res):
+        list = []
+        articles = res.json()['data']['articles']
+        
+        for item in articles:
+            list.append(articles[item]['url'])
+
+        return tuple(list)
+
+    return ()
