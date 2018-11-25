@@ -44,8 +44,8 @@ history = (
 
 
 food = (
-    "http://mp.sohu.com/profile?xpt=eWluaHVhNzdAMTI2LmNvbQ==",
-    "http://mp.sohu.com/profile?xpt=NTAxMzg0NTMwMkBzaW5hLnNvaHUuY29t",
+    # "http://mp.sohu.com/profile?xpt=eWluaHVhNzdAMTI2LmNvbQ==",
+    # "http://mp.sohu.com/profile?xpt=NTAxMzg0NTMwMkBzaW5hLnNvaHUuY29t",
     "http://mp.sohu.com/profile?xpt=cHBhZzY3NzgwZmMxNmIwOUBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=cHBhZzUwNjc0YTc3ZjNlOUBzb2h1LmNvbQ==",
     "http://mp.sohu.com/profile?xpt=bWVpc2hpLW5mZGFpbHlAc29odS5jb20=",
