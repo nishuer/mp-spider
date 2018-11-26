@@ -12,7 +12,7 @@ def hasCheckTitle(self):
 def hideOtherElement(self):
     driver = self.driver
     
-    e1s = driver.find_elements_by_xpath("//*[@id='wrapper'][position() > 2]")
+    e1s = driver.find_elements_by_xpath("//*[@id='wrapper']/*[position() > 2]")
     e1 = driver.find_element_by_xpath('//*[@id="header"]')
 
     for _ in e1s:
