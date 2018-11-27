@@ -94,6 +94,7 @@ def hasDir(dir):
 def riseKeywordWrite(fileName, list):
      with open('%s/app/data/rise_keyword/keyword_%s_data.txt' % (os.getcwd(), fileName), 'a', encoding='utf8') as f:
         try:
+            f.seek(0)
             f.truncate()
 
             for keyword in list:
