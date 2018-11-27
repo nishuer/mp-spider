@@ -43,6 +43,12 @@ class ToutiaoArticleRobot(Base):
 
 
     def riseKeywordTask(self):
+        try:
+            if (not self.config['match_rise_keyword']):
+                return True
+        except KeyError:
+            return True
+
         self.lab.updateRiseKeyword()
         Timer(3600, self.lab.updateRiseKeyword)
 
