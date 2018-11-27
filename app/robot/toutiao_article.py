@@ -1,8 +1,10 @@
 import os
 import importlib
 import time
+from threading import Timer
 
 from .base import Base
+from .toutiao_lab import ToutiaoLab
 from app.extend import helper, similarity
 from app.rule import ruler
 from app.config.default import API_SOURCE_LIST
@@ -19,11 +21,14 @@ class ToutiaoArticleRobot(Base):
 
         self.config = config
         self.sourceList = helper.getSourceList(config)
+        self.lab = ToutiaoLab(config)
         self.apiSourceList = ()
 
 
     def run(self, lock):
         self.lock = lock
+
+        self.riseKeywordTask()
         self.workFlow()
 
 
@@ -35,6 +40,11 @@ class ToutiaoArticleRobot(Base):
         while True:
             self.openApiSource()
             self.openSource()
+
+
+    def riseKeywordTask(self):
+        self.lab.updateRiseKeyword()
+        Timer(3600, self.lab.updateRiseKeyword)
 
 
     def loginAccount(self):
@@ -140,7 +150,7 @@ class ToutiaoArticleRobot(Base):
     def filterTitle(self, title):
         target_title = self.getTargetTitle(title)
 
-        return (not (title == target_title)) and similarity.titleCompare(title, target_title)
+        return (not (title == target_title)) and similarity.titleCompare(title, target_title) and self.lab.matchRiseKeyword(title)
 
 
     def openSource(self):

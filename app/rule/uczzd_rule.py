@@ -19,3 +19,5 @@ def hideOtherElement(self):
         driver.execute_script("arguments[0].setAttribute('style', 'display: none')", _)
 
     driver.execute_script("arguments[0].setAttribute('style', 'display: none')", e1)
+
+    self.scrollBottom()

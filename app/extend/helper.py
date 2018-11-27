@@ -89,3 +89,22 @@ def getDate():
 # 判断目录是否存在
 def hasDir(dir):
     return os.path.isdir(dir)
+
+
+def riseKeywordWrite(fileName, list):
+     with open('%s/app/data/rise_keyword/keyword_%s_data.txt' % (os.getcwd(), fileName), 'a', encoding='utf8') as f:
+        try:
+            f.truncate()
+
+            for keyword in list:
+                f.write('%s\n' % keyword)
+        except Exception as e:
+            logging.exception(e)
+
+
+def riseKeywordRead(fileName):
+    with open('%s/app/data/rise_keyword/keyword_%s_data.txt' % (os.getcwd(), fileName), 'r', encoding='utf8') as f:
+        try:
+            return f.readlines()
+        except Exception as e:
+            logging.exception(e)
