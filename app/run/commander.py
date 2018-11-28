@@ -19,19 +19,19 @@ if __name__ == '__main__':
 
     lock = multiprocessing.Lock()
 
-    p1 = multiprocessing.Process(target=robotFactory, args=(lock, config_food))
+    # p1 = multiprocessing.Process(target=robotFactory, args=(lock, config_food))
     p2 = multiprocessing.Process(target=robotFactory, args=(lock, config_history))
     p3 = multiprocessing.Process(target=robotFactory, args=(lock, config_joke))
     p4 = multiprocessing.Process(target=robotFactory, args=(lock, config_pet))
     p5 = multiprocessing.Process(target=robotFactory, args=(lock, config_star))
 
-    p1.start()
+    # p1.start()
     p2.start()
     p3.start()
     p4.start()
     p5.start()
 
-    p1.join()
+    # p1.join()
     p2.join()
     p3.join()
     p4.join()
