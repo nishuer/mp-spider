@@ -33,7 +33,7 @@ class ToutiaoLab():
         list = helper.riseKeywordRead(category)
 
         for keyword in list:
-            if (title.find(keyword) > -1):
+            if (title.find(keyword.strip()) > -1):
                 return True
 
         return False
