@@ -16,7 +16,7 @@ cids = {
 
 def getRiseDate():
     today = datetime.date.today()
-    return today + datetime.timedelta(days=-2)
+    return today + datetime.timedelta(days=-3)
 
 
 def getRiseKeyword(type):
