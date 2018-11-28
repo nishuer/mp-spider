@@ -269,7 +269,7 @@ class ToutiaoArticleRobot(Base):
 
             ruler.hideOtherElement(self, url)
 
-            time.sleep(1)
+            time.sleep(3)
 
             self.actionSelect()
             self.actionCopy()
