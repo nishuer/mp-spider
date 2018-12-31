@@ -3,11 +3,12 @@ from app.api import request
 from bs4 import BeautifulSoup
 import re
 import time
-import urllib.request
+import shutil
+
 
 def writeId(fileName, id):
 	with open('%s/app/data/image_id/id_%s_data.txt' % (os.getcwd(), fileName), 'a', encoding='utf8') as f:
-		f.write('%s\n' % url)
+		f.write('%s\n' % id)
 
 def readId(fileName, id):
 	with open('%s/app/data/image_id/id_%s_data.txt' % (os.getcwd(), fileName), 'r', encoding='utf8') as f:
@@ -43,13 +44,10 @@ items = soup.find_all('a', href=re.compile('/items/detail'))
 
 for item in items:
 	url = item['href']
-
 	id = getItemId(url)
 
 	if (readId('styleonme', id)):
-		break
-
-	time.sleep(6)
+		continue
 
 	r = request.get('http://www.styleonme.com/%s' % url)
 
@@ -57,11 +55,22 @@ for item in items:
 
 	imgs = soup.find_all('img', { 'name': 'detail_images' })
 
-	path = mkdir('%s/images/%s' % (os.getcwd(), id))
+	savePath = mkdir('%s/images/%s' % (os.getcwd(), id))
 
 	for index, img in enumerate(imgs):
 		imgUrl = 'http:%s' % img['src']
-		urllib.request.urlretrieve(imgUrl, "%s/%d.jpg" % (path, index))
-		time.sleep(3)
+		imgPath = "%s/%d.jpg" % (savePath, index)
+
+		if (os.path.exists(imgPath)):
+			continue
+
+		try:
+			r = request.get(imgUrl, stream=True, timeout=30)
+
+			with open(imgPath, 'wb') as f:
+				r.raw.decode_content = True
+				shutil.copyfileobj(r.raw, f)
+		except:
+			continue
 
 	writeId('styleonme', id)
