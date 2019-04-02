@@ -86,3 +86,18 @@ emotion_15200878087 = {
         "uid_tt": "e73a3d4e2da794f94b7104b76bd0bd46",
     },
 }
+
+
+street_snap_15200878087 = {
+	"platform": "toutiao",
+	"domain": ".toutiao.com",
+    "category": "street_snap",
+    "name": "街拍",
+    "account": "15200878087",
+    "password": "mjg5mdSINCE1991",
+    "cookies": {
+        "ccid": "3caa67295422191672595c00c082f815",
+        "sid_tt": "c7aec0b2d374767f67dffba040b89989",
+        "uid_tt": "e73a3d4e2da794f94b7104b76bd0bd46",
+    },
+}

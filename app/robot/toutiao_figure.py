@@ -4,7 +4,6 @@ import time
 from threading import Timer
 
 from .base import Base
-from .toutiao_lab import ToutiaoLab
 from app.extend import helper, similarity
 from app.rule import ruler
 from app.config.default import API_SOURCE_LIST
@@ -21,36 +20,21 @@ class ToutiaoArticleRobot(Base):
 
         self.config = config
         self.sourceList = helper.getSourceList(config)
-        self.lab = ToutiaoLab(config)
-        self.apiSourceList = ()
 
 
     def run(self, lock):
         self.lock = lock
 
-        self.riseKeywordTask()
         self.workFlow()
 
 
     def workFlow(self):
-        self.openSearch()
+        # self.openSearch()
         self.loginAccount()
         self.navigatePublishPage()
 
         while True:
-            self.openApiSource()
             self.openSource()
-
-
-    def riseKeywordTask(self):
-        try:
-            if (not self.config['match_rise_keyword']):
-                return True
-        except KeyError:
-            return True
-
-        self.lab.updateRiseKeyword()
-        Timer(3600, self.lab.updateRiseKeyword)
 
 
     def loginAccount(self):
@@ -82,14 +66,6 @@ class ToutiaoArticleRobot(Base):
 
     # 处理临时的页面特殊问题
     def __tempHandle(self):
-        # 处理青云计划弹窗
-        # if (self.hasCheckDriverWait('pgc-dialog', 3)):
-        #     dialogElement = self.driver.find_element_by_class_name("pgc-dialog")
-        #     self.hideElement(dialogElement)
-            
-        #     bodyElement = self.driver.find_elements_by_xpath("/html/body")
-        #     self.setElementAttr(bodyElement)('class')
-
         # 处理撤销
         if (self.hasCheckDriverWait('//*[@id="syl-fixed-alert"]/div/span', 3, 'XPATH')):
             time.sleep(3)
@@ -156,7 +132,7 @@ class ToutiaoArticleRobot(Base):
     def filterTitle(self, title):
         target_title = self.getTargetTitle(title)
 
-        return (not (title == target_title)) and similarity.titleCompare(title, target_title) and self.lab.matchRiseKeyword(title)
+        return (not (title == target_title)) and similarity.titleCompare(title, target_title)
 
 
     def openSource(self):
@@ -168,26 +144,6 @@ class ToutiaoArticleRobot(Base):
             finally:
                 self.lock.release()
     
-    
-    def openApiSource(self):
-        self.apiSourceList = helper.getApiSourceList(self.config)
-
-        for url in self.apiSourceList:
-            self.lock.acquire()
-
-            try:
-                self.__handleSingleSource_article(url)
-            finally:
-                self.lock.release()
-
-
-    def routeHandle(self, url):
-        try:
-            API_SOURCE_LIST.index(helper.getSourcePlatform(url))
-            self.__handleSingleSource_article(url)
-        except ValueError:
-            self.__handleSingleSource_list_article(url)
-
 
     def reset(self):
         self.switchWindow(2)
@@ -247,44 +203,6 @@ class ToutiaoArticleRobot(Base):
                 time.sleep(2)
             else:
                 print('不是图文，跳过 %s' % helper.getDate())
-        else:
-            print('已经发布，跳过 %s' % helper.getDate())
-
-        self.reset()
-
-    
-    # 单一资源处理流程，仅详情模式
-    def __handleSingleSource_article(self, url):
-        self.openNewWindow(url)
-
-        title = ruler.hasCheckTitle(self, url)
-        
-        if (title and self.filterTitle(title)):
-
-            self.switchWindow(1)
-
-            self.writeTitle(title)
-
-            self.switchWindow(2)
-
-            ruler.hideOtherElement(self, url)
-
-            time.sleep(3)
-
-            self.actionSelect()
-            self.actionCopy()
-
-            self.switchWindow(1)
-            
-            time.sleep(1)
-            
-            self.writeContent()
-
-            self.publishArticle()
-
-            helper.titleWrite(title, self.config['account']['category'])
-
-            time.sleep(2)
         else:
             print('已经发布，跳过 %s' % helper.getDate())
 
