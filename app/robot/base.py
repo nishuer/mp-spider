@@ -4,19 +4,43 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from app.extend import helper
 
 class Base(object):
     def __init__(self, config):
-        profile = webdriver.FirefoxProfile(config["profile_dir"])
-        self.driver = webdriver.Firefox(firefox_profile=profile)
+        self.profile = webdriver.FirefoxProfile(config["profile_dir"])
 
+        self.options = webdriver.FirefoxOptions()
+        # self.options.set_headless(True)
+        # chorme 设置
         # option = webdriver.ChromeOptions()
         # option.add_argument('--user-data-dir=%s' % config["profile_dir"])
         # self.driver = webdriver.Chrome(chrome_options=option)
 
-        self.driver.set_page_load_timeout(60)
+    def launchWebdriver(self, myProxy = ''):
+        if myProxy:
+            firefox_capabilities = webdriver.DesiredCapabilities.FIREFOX
+            firefox_capabilities['marionette'] = True
+            firefox_capabilities['proxy'] = {
+                "proxyType": "MANUAL",
+                "httpProxy": myProxy,
+                "ftpProxy": myProxy,
+                "sslProxy": myProxy
+            }
+
+            self.driver = webdriver.Firefox(
+                capabilities=firefox_capabilities,
+                firefox_profile=self.profile,
+                options=self.options
+            )
+        else:
+            self.driver = webdriver.Firefox(
+                firefox_profile=self.profile,
+                options=self.options
+            )
+
+        self.driver.set_page_load_timeout(120)
+        self.driver.maximize_window()
     
 
     def hasCheckDriverWait(self, elementName, timeout = 6, type = 'CLASS_NAME'):
@@ -36,13 +60,12 @@ class Base(object):
 
 
     def addCookies(self, account):
+        self.driver.delete_all_cookies()
         for key in account['cookies'].keys():
             cookie = {
-                "domain": account['domain'],
+                "domain": account['domain'] if key == 'BDUSS' else account['tieba_domain'],
                 "name": key,
                 "value": account['cookies'][key],
-                'path': '/',
-                'expires': None
             }
             self.driver.add_cookie(cookie)
 
@@ -107,4 +130,7 @@ class Base(object):
    
     def scrollTop(self):
         self.driver.execute_script("window.scrollTo(0, 0)")
+
+    def scrollAnywhere(self, value):
+        self.driver.execute_script("window.scrollTo(0, document.documentElement.scrollTop + %d)" % (value))
         
