@@ -1,4 +1,5 @@
-# mp_spider
+# mp-spider
+今日头条自动发文机器人+其他公众平台采集爬虫
 
 ## Install Python 3 on CentOS 7
 
@@ -39,31 +40,4 @@ pip install -r requirements.txt
 
 ```bash
 pip freeze > requirements.txt
-```
-
-## Run Development
-
-```bash
-export FLASK_APP=app
-export FLASK_ENV=development
-flask run --host=0.0.0.0
-```
-
-## Run Production
-
-```bash
-gunicorn -w 4 -b 127.0.0.1:8000 manage:app -D
-```
-
-## devOps Cli
-
-```bash
-ps ax|grep gunicorn
-pstree -ap|grep supervisor
-
-nginx -s reload
-
-sudo systemctl enable mysqld
-sudo systemctl start mysqld
-sudo systemctl status mysqld
 ```
