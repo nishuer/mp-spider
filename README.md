@@ -1,5 +1,5 @@
 # mp-spider
-今日头条自动发文机器人+其他公众平台采集爬虫
+Toutiao auto Posting robot and media platform spiders 今日头条自动发文机器人，各大公众平台采集爬虫，部分公众平台规则需要自己适配。
 
 ## Install Python 3 on CentOS 7
 
